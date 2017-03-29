@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  id="cordova-plugin-sdcard"
+  version="1.0.0">
+  <name>SdCard</name>
+
+  <dependency id="cordova-plugin-file" />
+  
+  <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+
+    <resource-file src="libs/gson-2.8.0.jar" target="libs/gson-2.8.0.jar" />
+
+  <js-module src="www/SdCard.js" name="SdCard">
+    <clobbers target="SdCard" />
+  </js-module>
+  
+  <js-module src="www/Promise.js" name="Promise">
+  </js-module>
+
+  <!-- android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="SdCard" >
+        <param name="android-package" value="org.apache.cordova.sdcard.SdCard"/>
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/SdCard.java" target-dir="src/org/apache/cordova/sdcard" />
+  </platform>
+</plugin>
