@@ -58,7 +58,7 @@ public class SdCard extends CordovaPlugin {
 		Context context = this.cordova.getActivity().getApplicationContext(); 
 		File[] files = context.getExternalFilesDirs(null);
 		for (File file : files) {
-			List<Long> sizeList = new List<Long>();
+			List<Long> sizeList = new ArrayList<Long>();
 			sizeList.add(file.getTotalSpace());
 			sizeList.add(file.getUsableSpace());
 			result.put(file.path, sizeList);
