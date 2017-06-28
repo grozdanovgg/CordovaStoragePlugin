@@ -3,6 +3,7 @@ package org.apache.cordova.sdcard;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -54,7 +55,7 @@ public class SdCard extends CordovaPlugin {
 	}
 	
 	public HashMap<String, List<Long>> getSpace() {
-		HashMap<String, List<Long>> result = new HashMap<String, List<Long>>();
+		HashMap<String, List<Long>> result = new HashMap<String, ArrayList<Long>>();
 		Context context = this.cordova.getActivity().getApplicationContext(); 
 		File[] files = context.getExternalFilesDirs(null);
 		for (File file : files) {
