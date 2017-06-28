@@ -40,7 +40,13 @@ public class SdCard extends CordovaPlugin {
 				String json = gson.toJson(result);
 				callbackContext.success(json);
                 return true;
-            }
+            } else if (action.equals("getSpace")) {
+				HashMap<String, List<Long>> result = getSpace();
+				Gson gson = new Gson();
+				String json = gson.toJson(result);
+				callbackContext.success(json);
+				return true;
+			}
             return false;
         } catch (Exception ex) {
             callbackContext.error(ex.getMessage());
