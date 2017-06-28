@@ -20,4 +20,19 @@ SdCard.prototype.get = function() {
     return deferral.promise;
 }
 
+SdCard.prototype.getSpace = function() {
+	
+	var deferral = new Promise.Deferral(),
+        successCallback = function(result) {
+            deferral.resolve(result);
+        },
+        errorCallback = function(err) {
+            deferral.reject(err);
+        };
+
+    exec(successCallback, errorCallback, "SdCard", "getSpace", []);
+
+    return deferral.promise;
+}
+
 module.exports = SdCard;
