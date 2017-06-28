@@ -55,14 +55,14 @@ public class SdCard extends CordovaPlugin {
 	}
 	
 	public HashMap<String, List<Long>> getSpace() {
-		HashMap<String, List<Long>> result = new HashMap<String, ArrayList<Long>>();
+		HashMap<String, List<Long>> result = new HashMap<String, List<Long>>();
 		Context context = this.cordova.getActivity().getApplicationContext(); 
 		File[] files = context.getExternalFilesDirs(null);
 		for (File file : files) {
 			List<Long> sizeList = new ArrayList<Long>();
 			sizeList.add(file.getTotalSpace());
 			sizeList.add(file.getUsableSpace());
-			result.put(file.path, sizeList);
+			result.put(file.getPath(), sizeList);
 		}
 
 		return result;
