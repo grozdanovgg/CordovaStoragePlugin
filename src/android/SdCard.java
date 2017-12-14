@@ -27,53 +27,54 @@ import android.net.Uri;
 
 public class SdCard extends CordovaPlugin {
 	public SdCard() {
-		
+
 	}
-	
+
 	@Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        try {
-            if (action.equals("get")) {
-                File[] result = get();
+	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+		try {
+			if (action.equals("get")) {
+				File[] result = get();
 				String dirResult = getDir();
 				Gson gson = new Gson();
 				String json = gson.toJson(result);
 				callbackContext.success(json);
-                return true;
-            } else if (action.equals("getSpace")) {
+				return true;
+			} else if (action.equals("getSpace")) {
 				HashMap<String, List<Long>> result = getSpace();
 				Gson gson = new Gson();
 				String json = gson.toJson(result);
 				callbackContext.success(json);
 				return true;
 			}
-            return false;
-        } catch (Exception ex) {
-            callbackContext.error(ex.getMessage());
-        }
-        return true;
-    }
-	
-	
+			return false;
+		} catch (Exception ex) {
+			callbackContext.error(ex.getMessage());
+		}
+		return true;
+	}
+
 	public File[] get() {
-		Context context = this.cordova.getActivity().getApplicationContext(); 
+		Context context = this.cordova.getActivity().getApplicationContext();
 		return context.getExternalFilesDirs(null);
 	}
-	
+
 	public HashMap<String, List<Long>> getSpace() {
 		HashMap<String, List<Long>> result = new HashMap<String, List<Long>>();
-		Context context = this.cordova.getActivity().getApplicationContext(); 
+		Context context = this.cordova.getActivity().getApplicationContext();
 		File[] files = context.getExternalFilesDirs(null);
 		for (File file : files) {
-			List<Long> sizeList = new ArrayList<Long>();
-			sizeList.add(file.getTotalSpace());
-			sizeList.add(file.getUsableSpace());
-			result.put(file.getPath(), sizeList);
+			if (file != null) {
+				List<Long> sizeList = new ArrayList<Long>();
+				sizeList.add(file.getTotalSpace());
+				sizeList.add(file.getUsableSpace());
+				result.put(file.getPath(), sizeList);
+			}
 		}
 
 		return result;
 	}
-	
+
 	public String getDir() {
 		return System.getenv("EXTERNAL_SDCARD_STORAGE");
 	}
