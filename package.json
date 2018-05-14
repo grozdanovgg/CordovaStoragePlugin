@@ -1,0 +1,16 @@
+{
+    "name": "cordova-plugin-sdcard",
+    "version": "1.2.0",
+    "description": "Get SD card storage location",
+    "keywords": [
+        "cordova",
+        "android",
+        "sdcard",
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/grozdanovgg/CordovaStoragePlugin"
+    },
+    "author": "grozdanovgg",
+    "license": "MIT"
+}
