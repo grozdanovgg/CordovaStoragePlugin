@@ -5,7 +5,7 @@
     "keywords": [
         "cordova",
         "android",
-        "sdcard",
+        "sdcard"
     ],
     "repository": {
         "type": "git",
